@@ -114,40 +114,52 @@
   font-size: 120%;
   font-family: arial;
   }
+  .column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
   </style>
 
   <br>This year, CC is taking the Big Rosella Festival Online!</br>
   <br>Due to COVID-19, this year we have had to improvise so this year the festival is going to be online!</br>
   <br>CC's Kitchen and Petersens' Farm is proud to announce the first ever VIRTUAL BIG ROSELLA FESTIVAL on 2nd, 3rd and 4th of May zooming from our PETERSEN'S FARM to the comforts of your own home!</br>
   <br>Watch this space for announcements and the upcoming program and we look forward to bringing your all things Rosella!</br>
-  <br>Go to our Facebook page and see our LIVE Streams and Demonstrations as they happen!</br>
-  <br><button type="button" onclick="document.location = 'https://www.facebook.com/bigrosellafestival/'">Big Rosella Facebook Page</button></br>
+  <br>Go to our <a href="https://www.facebook.com/bigrosellafestival/">Facebook page</a> and see our LIVE Streams and Demonstrations as they happen!</br>
+
 </p>
 
-<p>
-<div>br class="row">
+
+<div>
+
   <div class="column">
 
-
-  <br>something here about the products</br>
-  <a href="about.html">About Us</a>
+    <p>
+      <br>something here about the products</br>
+      <a href="about.html">About Us</a>
+    </p>
   </div>
 
   <div class="column">
-
-
-
-  <br>something here about the activities</br>
-  <a href="activities.html">Activities</a>
+    <p>
+      <br>something here about the activities</br>
+      <a href="activities.html">Activities</a>
+    </p>
   </div>
 
 </div>
-
-<br>
-<a href="contact.html">Contact Us</a>
-</br>
+<p>
+  <br>something about contact</br>
+  <a href="contact.html">Contact Us</a>
 
 </p>
+
 <div class="footer">
   <h2>Footer</h2>
 </div>
