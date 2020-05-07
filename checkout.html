@@ -16,7 +16,7 @@
 <script src="modid1.js"></script>
 <script src="modid2.js"></script>
 <script src="navbar.js"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AU6Y-JLJTiIu5WMiclvuXMPlJkQHhNdwolssjBeBoXVCwh6AIjVI7RtkrDYsp-heA6ShEzSRzY45eh5Z"></script>
 
 </head>
 
@@ -124,6 +124,36 @@
 <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
 </form>
+	
+	
+<div id="paypal-button-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal',
+          
+      },
+      createOrder: function(data, actions) {
+          return actions.order.create({
+              purchase_units: [{
+                  amount: {
+                      value: '10'
+                  }
+              }]
+          });
+      },
+      onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+              alert('Transaction completed by ' + details.payer.name.given_name + '!');
+          });
+      }
+  }).render('#paypal-button-container');
+</script>
+
 <div class="footer">
   <h2>Footer</h2>
 </div>
