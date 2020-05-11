@@ -40,27 +40,45 @@
   <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 
-<h2>Checkout</h2>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" autocomplete="on" id= "paypal_form">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="9348DC8QBCX3N">
-<table>
-<tr><td>  <label for="fname">First name:</label>
-  <input type="text" id="fname" name="fname" form= "paypal_form"><br><br>
-  <label for="lname">Last name:</label>
-  <input type="text" id="lname" name="lname" form= "paypal_form"><br><br>
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" form= "paypal_form" autocomplete="off"><br><br>
-<input type="hidden" name="on0" value="Ticket per person">Ticket per person</td></tr><tr><td><select name="os0">
-	<option value="Single Adult">Single Adult $10.00 AUD</option>
-	<option value="Family Adult">Family Adult $8.00 AUD</option>
- 
-</select> </td></tr>
-</table>
-<input type="hidden" name="currency_code" value="AUD">
-<input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
-</form>
+<h2>Book Ticket</h2>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <script>
+      function multiply() {
+        a = Number(document.getElementById('QTY').value);
+        b = Number(document.getElementById('TPRICE').value);
+        c = a * b;
+
+        document.getElementById('TOTAL').value = c;
+      }
+    </script>
+                           <fieldset>
+                               <input type="hidden" name="cmd" value="_xclick" />
+                               <input type="hidden" name="business" value="sb-8fejq1610813@business.example.com" />
+                               <input type="hidden" name="lc" value="AU" />
+                               <input type="hidden" name="item_name" value="Payment" />
+                               <input type="hidden" name="item_number" value="P1" />
+                               <input type="hidden" name="currency_code" value="AUD" />
+                               <input type="hidden" name="button_subtype" value="services" />
+                               <input type="hidden" name="no_note" value="0" />
+                               <input type="hidden" name="cn" value="Comments" />
+                               <input type="hidden" name="no_shipping" value="1" />
+                               <input type="hidden" name="rm" value="1" />
+                               <input type="hidden" name="return" value="http://www.ekerner.com/payments/?payment=success" />
+                               <input type="hidden" name="cancel_return" value="http://www.ekerner.com/payments/?payment=cancelled" />
+                               <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHostedGuest" />
+                               <table>
+                                      <tr><td style="padding:0 5px 5px 0;">Price/ticket AUD</td><td style="padding:0 5px 5px 0;"><input type="text" name="TPRICE" id="TPRICE" value="10" readonly/></td></tr>
+                                      <tr><td style="padding:0 5px 5px 0;">Quantity</td><td style="padding:0 5px 5px 0;"><input type="number" value="" name="QTY" id="QTY" min="0" max="100" step="1" onKeyUp="multiply()" /></td></tr>
+                                      <tr><td style="padding:0 5px 5px 0;">Total Amount AUD</td><td style="padding:0 5px 5px 0;"><input type="text" name="amount" id="TOTAL" maxlength="200" /></td></tr>
+                                      <tr><td style="padding:0 5px 5px 0;"><input type="hidden" name="on0" value="Reference" />Reference</td><td style="padding:0 5px 5px 0;"> <input type="text" name="os0" maxlength="200" /></td></tr>
+                                      <tr><td>&nbsp;</td><td style="padding:0 5px 5px 0;">
+                                               <input style="position:relative; left:-10px; background:#ffffff; border:0;" type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" name="submit" alt="PayPal . The safer, easier way to pay online." />
+                                               <img alt="" style="border:0;" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
+                                       </td></tr>
+                               </table>
+                           </fieldset>
+                       </form>
+                     
 	
 	
 <div id="paypal-button-container"></div>
