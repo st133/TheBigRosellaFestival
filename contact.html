@@ -40,27 +40,55 @@
   <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 
+<style>
+
+    p {
+  text-align: centre;
+  font-size: 120%;
+  font-family: arial;
+
+
+  }
+
+</style>
+
 <h2>Contact us</h2>
 <div class="container">
   <div style="text-align:center">
-    <p>Swing by for a cup of coffee, or leave us a message:</p>
+    <p>For more information, don't hesitate to contact us!</p>
   </div>
   <div class="row">
     <div class="column">
-      <body>
-      <h3>My Google Maps Demo</h3>
+      <h3>Petersen's Farm</h3>
+      <p>
+        <br>Petersen's Farm: 2 Reilly Road, Woolooga</br>
+        <br>Phone: 0411 624 648</br>
+        <br>Email: ccs_kitchen@yahoo.com</br>
+      </p>
+
+    </div>
+    <div class="column">
+
+      <style>
+      #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+      }
+    </style>
+
       <!--The div element for the map -->
       <div id="map"></div>
       <script>
 // Initialize and add the map
 function initMap() {
   // The location of Uluru
-  var uluru = {lat: -25.344, lng: 131.036};
+  var bigrosella = {lat: -25.985759, lng: 152.403343};
   // The map, centered at Uluru
   var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 4, center: uluru});
+      document.getElementById('map'), {zoom: 10, center: bigrosella});
   // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: uluru, map: map});
+  var marker = new google.maps.Marker({position: bigrosella, map: map});
 }
     </script>
       <!--Load the API from the specified URL
@@ -69,29 +97,9 @@ function initMap() {
       * The callback parameter executes the initMap() function
       -->
       <script async defer
-              src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO3hE4bE7WV7mGuXL4kn9caoWI44tD8Ic&callback=initMap">
       </script>
-      </body>
 
-
-      <img src="map_image.jpg" style="width:100%">
-    </div>
-    <div class="column">
-      <form action="/action_page.php">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-        <label for="country">Country</label>
-        <select id="country" name="country">
-          <option value="australia">Australia</option>
-          <option value="canada">Canada</option>
-          <option value="usa">USA</option>
-        </select>
-        <label for="subject">Subject</label>
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-        <input type="submit" value="Submit">
-      </form>
     </div>
   </div>
 </div>
