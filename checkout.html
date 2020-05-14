@@ -16,7 +16,7 @@
 <script src="modid1.js"></script>
 <script src="modid2.js"></script>
 <script src="navbar.js"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=AU6Y-JLJTiIu5WMiclvuXMPlJkQHhNdwolssjBeBoXVCwh6AIjVI7RtkrDYsp-heA6ShEzSRzY45eh5Z"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AU6Y-JLJTiIu5WMiclvuXMPlJkQHhNdwolssjBeBoXVCwh6AIjVI7RtkrDYsp-heA6ShEzSRzY45eh5Z&currency=AUD"></script>
 
 </head>
 
@@ -41,62 +41,45 @@
 </div>
 
 <h2>Book Ticket</h2>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <script>
-      function multiply() {
-        a = Number(document.getElementById('QTY').value);
-        b = Number(document.getElementById('TPRICE').value);
-        c = a * b;
+<form>
 
-        document.getElementById('TOTAL').value = c;
-      }
-    </script>
-                           <fieldset>
-                               <input type="hidden" name="cmd" value="_xclick" />
-                               <input type="hidden" name="business" value="sb-8fejq1610813@business.example.com" />
-                               <input type="hidden" name="lc" value="AU" />
-                               <input type="hidden" name="item_name" value="Payment" />
-                               <input type="hidden" name="item_number" value="P1" />
-                               <input type="hidden" name="currency_code" value="AUD" />
-                               <input type="hidden" name="button_subtype" value="services" />
-                               <input type="hidden" name="no_note" value="0" />
-                               <input type="hidden" name="cn" value="Comments" />
-                               <input type="hidden" name="no_shipping" value="1" />
-                               <input type="hidden" name="rm" value="1" />
-                               <input type="hidden" name="return" value="http://www.ekerner.com/payments/?payment=success" />
-                               <input type="hidden" name="cancel_return" value="http://www.ekerner.com/payments/?payment=cancelled" />
-                               <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHostedGuest" />
-                               <table>
-                                      <tr><td style="padding:0 5px 5px 0;">Price/ticket AUD</td><td style="padding:0 5px 5px 0;"><input type="text" name="TPRICE" id="TPRICE" value="10" readonly/></td></tr>
-                                      <tr><td style="padding:0 5px 5px 0;">Quantity</td><td style="padding:0 5px 5px 0;"><input type="number" value="" name="QTY" id="QTY" min="0" max="100" step="1" onKeyUp="multiply()" /></td></tr>
-                                      <tr><td style="padding:0 5px 5px 0;">Total Amount AUD</td><td style="padding:0 5px 5px 0;"><input type="text" name="amount" id="TOTAL" maxlength="200" /></td></tr>
-                                      <tr><td style="padding:0 5px 5px 0;"><input type="hidden" name="on0" value="Reference" />Reference</td><td style="padding:0 5px 5px 0;"> <input type="text" name="os0" maxlength="200" /></td></tr>
-                                      <tr><td>&nbsp;</td><td style="padding:0 5px 5px 0;">
-                                               <input style="position:relative; left:-10px; background:#ffffff; border:0;" type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_paynowCC_LG.gif" name="submit" alt="PayPal . The safer, easier way to pay online." />
-                                               <img alt="" style="border:0;" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1" />
-                                       </td></tr>
-                               </table>
-                           </fieldset>
-                       </form>
-                     
-	
-	
+    <fieldset>
+        <p>Each ticket costs $10 per person aged 16 or over. </p>
+        <p>Free entry for children under 16 years old. </p>
+        <table>
+            <tr><td style="padding:0 5px 5px 0;">Price/ticket Aud</td><td style="padding:0 5px 5px 0;"><input type="text" name="TPRICE" id="TPRICE" value="10" readonly/></td></tr>
+            <tr><td style="padding:0 5px 5px 0;">Quantity</td><td style="padding:0 5px 5px 0;"><input type="number" value="" name="QTY" id="QTY" min="0" max="100" step="1" onKeyUp="multiply()" /></td></tr>
+            <tr><td style="padding:0 5px 5px 0;">Total Amount Aud</td><td style="padding:0 5px 5px 0;"><input type="text" name="amount" id="TOTAL" maxlength="200" /></td></tr>
+            <tr><td style="padding:0 5px 5px 0;"><input type="hidden" name="on0" value="Reference" />Reference</td><td style="padding:0 5px 5px 0;"> <input type="text" name="os0" maxlength="200" /></td></tr>
+            <tr><td>&nbsp;</td><td style="padding:0 5px 5px 0;">
+        </table>
+    </fieldset>
+</form>
+<p>Select an option to pay</p>
 <div id="paypal-button-container"></div>
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
+
 <script>
+var c=0;
+  function multiply() {
+    a = Number(document.getElementById('QTY').value);
+    b = Number(document.getElementById('TPRICE').value);
+    c = a * b;
+    document.getElementById('TOTAL').value = c;
+  }
+
   paypal.Buttons({
       style: {
           shape: 'rect',
           color: 'gold',
           layout: 'vertical',
           label: 'paypal',
-          
+
       },
       createOrder: function(data, actions) {
           return actions.order.create({
               purchase_units: [{
                   amount: {
-                      value: '10'
+                      value: c
                   }
               }]
           });
