@@ -100,6 +100,7 @@ h2 {
   position: relative;
   text-align: center;
   color: black;
+background-color: lightblue;
 }
 /* Fake image, just for this example */
 .fakeimg {

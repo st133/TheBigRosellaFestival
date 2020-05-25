@@ -20,7 +20,7 @@
   </map>
 </map>
   <h1>Big Rosella Festival</h1>
- 
+
   </div>
   <div class="topnav" id="myTopnav">
   <a href="homepage.html" class="active">Home</a>
@@ -34,58 +34,117 @@
 <h2>Book Ticket</h2>
 
 <div class="container">
-<div class="main">
-<form>
-    <fieldset>
-        <p>Each ticket costs $10 per person aged 16 or over. </p>
-        <p>Free entry for children under 16 years old. </p>
-        <table>
-            <tr><td style="padding:0 5px 5px 0;">Price/ticket Aud</td><td style="padding:0 5px 5px 0;"><input type="text" name="TPRICE" id="TPRICE" value="10" readonly/></td></tr>
-            <tr><td style="padding:0 5px 5px 0;">Quantity</td><td style="padding:0 5px 5px 0;"><input type="number" value="" name="QTY" id="QTY" min="0" max="100" step="1" onKeyUp="multiply()" /></td></tr>
-            <tr><td style="padding:0 5px 5px 0;">Total Amount Aud</td><td style="padding:0 5px 5px 0;"><input type="text" name="amount" id="TOTAL" maxlength="200" /></td></tr>
-            <tr><td style="padding:0 5px 5px 0;"><input type="hidden" name="on0" value="Reference" />Reference</td><td style="padding:0 5px 5px 0;"> <input type="text" name="os0" maxlength="200" /></td></tr>
-            <tr><td>&nbsp;</td><td style="padding:0 5px 5px 0;">
-        </table>
-    </fieldset>
+
+<form id="payment-form" action="Stripe_action.php"  method="post" >
+    <div class="row">
+        <div class="side">
+            <h2>Customer detail</h2>
+            <label for="FirstName">First Name</label>
+            <input type="text" id="FirstName" name="FirstName" placeholder="Your name.."><br>
+            <label for="LastName">Last Name</label>
+            <input type="text" id="LastName" name="LastName" placeholder="Your last name.."><br>
+            <label for="Age">Age</label>
+            <select id="Age" name="Age">
+                <option value="0">Select</option>
+                <option value="-18">-18</option>
+                <option value="18-29">18-29</option>
+                <option value="30-39">30-39</option>
+                <option value="40-49">40-49</option>
+                <option value="+50">+50</option>
+            </select><br>
+            <label for="Email">Email Address</label>
+            <input type="email" id="Email" name="Email" size="99" class="form-control mb-3 StripeElement StripeElement--empty" required placeholder="Email Address"><br>
+            <label for="Contact_Num">Contact number</label>
+            <input type="text" id="Contact_Num" name="Contact_Num" placeholder="Your Contact number."><br>
+            <fieldset>
+                <legend>How did you hear about The Big Rosella Festival?</legend>
+                <input type="checkbox" name="Comments" value="Email">Email<br>
+                <input type="checkbox" name="Comments" value="SocialMedia">Social Media<br>
+                <input type="checkbox" name="Comments" value="Friends">Friends<br>
+                <input type="checkbox" name="Comments" value="Newspaper">Newspaper<br>
+                <input type="checkbox" name="Comments" value="Website">Website<br>
+                <input type="checkbox" name="Comments" value="Other">Other<br>
+                <label for="Other">If your select Other, </label>
+                <textarea id="Other" name="Other" placeholder="Write something.." style="height:170px"></textarea>
+            </fieldset>
+            <input type="reset"><br>
+        </div>
+
+        <div class="side">
+            <h2>Payment</h2>
+            <fieldset>
+                <legend > Festival Ticket [$5/P] </legend><br>
+                <div class="form-row">
+                    <label for="CardName">Name</label>
+                    <input type="text" id="CardName" name="CardName" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Name on Card"><br>
+                    <label for="Quantity">Ticket Quantity</label>
+                    <select id="Quantity" name="Quantity" onchange="updateTotal()"><br>
+
+                        <option value="0">Quantity</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select><br>
+                    <label for="TotalPrice">Total Payment Price / AUD </label>
+                    <input type="text" name="TotalPrice" id="TotalPrice"/> <br/>
+
+                    <input type="reset"><br>
+                </div><br>
+            </fieldset><br>
+            <fieldset>
+                <legend > Credit/Debit Card Details </legend ><br>
+                        <div id="card-element" class="form-control">
+                        <!-- a Stripe Element will be inserted here. -->
+                        </div>
+                        <!-- Used to display form errors -->
+                        <div id="card-errors" role="alert"></div><br>
+                        <button type="submit" >Pay by Credit card</button><br>
+
+            </fieldset><br>
+            <div id="paypal-button-container"></div>
+        </div>
+    </div>
 </form>
-
-<p>Select an option to pay</p>
-<div id="paypal-button-container"></div>
-
-<script>
-var c=0;
-  function multiply() {
-    a = Number(document.getElementById('QTY').value);
-    b = Number(document.getElementById('TPRICE').value);
-    c = a * b;
-    document.getElementById('TOTAL').value = c;
-  }
-
-  paypal.Buttons({
-      style: {
-          shape: 'rect',
-          color: 'gold',
-          layout: 'vertical',
-          label: 'paypal',
-
-      },
-      createOrder: function(data, actions) {
-          return actions.order.create({
-              purchase_units: [{
-                  amount: {
-                      value: c
-                  }
-              }]
-          });
-      },
-      onApprove: function(data, actions) {
-          return actions.order.capture().then(function(details) {
-              alert('Transaction completed by ' + details.payer.name.given_name + '!');
-          });
-      }
-  }).render('#paypal-button-container');
-</script>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="./js/charge.js"></script>
+<script>
+    function updateTotal() {
+        var quantity = document.getElementById("Quantity").value;
+        var total = 5 * quantity;
+        document.getElementById("TotalPrice").value = total;
+    }
+</script>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD&disable-funding=credit,card" data-sdk-integration-source="button-factory"></script>
+<script>
+    paypal.Buttons({
+        style: {
+            shape: 'rect',
+            color: 'gold',
+            layout: 'vertical',
+            label: 'paypal',
+
+        },
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: document.getElementById("TotalPrice").value
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name + '!');
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
 
 <div class="footer">
   <br><h2>Big Rosella Festival</h2></br>
