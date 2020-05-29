@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Customer (
 
 
 CREATE TABLE IF NOT EXISTS Payment (
-    Customer_ID INT,
+    Customer_ID INT AUTO_INCREMENT,
 	CardName varchar(50),
     Quantity ENUM('1', '2', '3', '4', '5'),
     TotalPrice Int,
