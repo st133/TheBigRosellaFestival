@@ -39,7 +39,7 @@
 
 <h2>Book Ticket</h2>
 
-<form id="payment-form" action="Stripe_action.php"  method="post" >
+<form id="payment-form" action="action.php" method="post" >
     <div class="row">
         <div class="column">
             <h2>Customer detail</h2>
